@@ -4,7 +4,7 @@
  * get_flags - Get the active flags
  * @format: The string we work on
  * @i: A pointer to the location inside the text
- * Return: 
+ * Return: Return Flagtotal
  */
 int get_flags(const char *format, int *i)
 {
