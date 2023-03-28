@@ -14,19 +14,13 @@
  *
  * Return: Number of characters printed, or -1 if an error occurs.
  */
-int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
-	int flags, int width, int precision, int size)
+
+int handle_print(const char *fmt, int *ind, va_list list, char buffer[], int flags, int width, int precision, int size)
 {
 	int i, unknow_len = 0, printed_chars = -1;
 
 	/* Define an array of format specifier characters and their corresponding print functions */
-	fmt_t fmt_types[] = {
-		{'c', print_char}, {'s', print_string}, {'%', print_percent},
-		{'i', print_int}, {'d', print_int}, {'b', print_binary},
-		{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
-		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
-		 {'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
-	};
+	fmt_t fmt_types[] = {{'c', print_char}, {'s', print_string}, {'%', print_percent}, {'i', print_int}, {'d', print_int}, {'b', print_binary}, {'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal}, {'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable}, {'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}};
 
 	/* Loop over the array of format specifiers to find the appropriate print function */
 	for (i = 0; fmt_types[i].fmt != '\0'; i++)
@@ -56,9 +50,8 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 			unknow_len += write(1, " ", 1);
 		}
 		else if (width)
-		{
-			/* If a width was specified, adjust the current index to skip over the unknown character and any previous flags */
-			 --(*ind);
+		{/* If a width was specified, adjust the current index to skip over the unknown character and any previous flags */
+			--(*ind);
 			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
 			{
 				--(*ind);
@@ -68,13 +61,9 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 				--(*ind);
 			}
 			return (1);
-		}
-
-		/* Print the unknown character */
+		} /* Print the unknown character */
 		unknow_len += write(1, &fmt[*ind], 1);
 		return (unknow_len);
-	}
-
-	/* Return the number of characters printed */
+	} /* Return the number of characters printed */
 	return (printed_chars);
 }
