@@ -17,7 +17,7 @@ int get_precision(const char *format, int *i, va_list list)
 		return (prec);
 	}
 
-	pers = 0;
+	prec = 0;
 
 	for (counter += 1; format[counter] != '\0'; counter++)
 	{
