@@ -18,7 +18,7 @@ int get_flags(const char *format, int *i)
 		{
 			if (format[oCounter] == flags[iCounter])
 			{
-				flagTotal += flags_values[iCounter];
+				flagTotal |= flags_values[iCounter];
 				break;
 			}
 		}
